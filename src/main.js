@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import settingRouter from './settings/router/SettingsRouter.js';
-import structureRouter from './structure/router/StructureRouter.js'
+import structureRouter from './structures/router/StructureRouter.js'
 import stringRouter from './strings/router/StringRouter.js'
 
 const app = express();

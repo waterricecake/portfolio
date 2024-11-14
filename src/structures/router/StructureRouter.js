@@ -4,7 +4,7 @@ import fs from 'fs/promises';
 const router = express.Router();
 
 const getMockData = async () => {
-    const data = await fs.readFile(new URL('./../mock/StringMock.json', import.meta.url));
+    const data = await fs.readFile(new URL('./../mock/StructureMock.json', import.meta.url));
     return JSON.parse(data);
 };
 
