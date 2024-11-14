@@ -8,7 +8,7 @@ const getMockData = async () => {
     return JSON.parse(data);
 };
 
-router.get('/', async (req, res) => {
+router.get('', async (req, res) => {
     const mock = await getMockData();
     res.json(mock);
 });
