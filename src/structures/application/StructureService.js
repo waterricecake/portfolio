@@ -7,7 +7,7 @@ const getMockData = async (filename) => {
   return JSON.parse(data);
 };
 
-const getStructure = async () => {
+const getStructure = async (userId) => {
   const structure = await getMockData('StructureMock.json');
   const categories = structure['categories'];
   const sections = structure['sections'];
