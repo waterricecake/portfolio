@@ -27,47 +27,7 @@ const getStructure = async () => {
   return structure;
 };
 
-const getAbout = async () => {
-  return await getMockData('about.json');
-};
-
-const getEducation = async () => {
-  return await getMockData('education.json');
-};
-
-const getSkills = async () => {
-  return await getMockData('skills.json');
-};
-
-const getExperience = async () => {
-  return await getMockData('experience.json');
-};
-
-const getPortfolio = async () => {
-  return await getMockData('portfolio.json');
-};
-
-const getAchievements = async () => {
-  return await getMockData('achievements.json');
-};
-
-const getUpdates = async () => {
-  return await getMockData('updates.json');
-};
-
-const getContact = async () => {
-  return await getMockData('contact.json');
-};
-
 const method = {
   getStructure,
-  getAbout,
-  getEducation,
-  getSkills,
-  getExperience,
-  getPortfolio,
-  getAchievements,
-  getUpdates,
-  getContact,
 };
 export default method;
