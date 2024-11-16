@@ -35,20 +35,6 @@
         }
     },
 
-    "supportedThemes": [
-        {
-            "id": "dark",
-            "default": true,
-            "icon": "fa-solid fa-moon"
-        },
-
-        {
-            "id": "light",
-            "default": false,
-            "icon": "fa-solid fa-sun"
-        }
-    ],
-
     "supportedLanguages": [
         {
             "name": "English",
