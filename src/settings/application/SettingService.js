@@ -1,16 +1,17 @@
 import Settings from './../domains/SettingSchema.js';
+import mongoose from 'mongoose';
 
 const getSetting = async (userId) => {
-  const setting = await Settings.find({ userId: userId });
+  const setting = await Settings.findOne({ userId: userId }).populate([
+    'preloader',
+    'profile',
+    'status',
+    {
+      path: 'supportedLanguages',
+    },
+    'emailjs',
+  ]);
   return setting;
-};
-
-const requestQuery = async (query) => {
-  try {
-    query;
-  } catch (err) {
-    console.erro(err);
-  }
 };
 
 export default getSetting;

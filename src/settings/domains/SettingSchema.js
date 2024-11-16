@@ -29,18 +29,18 @@ const SettingSchema = new Schema({
   },
   profile: {
     type: ObjectId,
-    requierd: true,
+    required: true,
     ref: 'Profile',
   },
   status: {
     type: ObjectId,
-    requierd: true,
+    required: true,
     ref: 'Status',
   },
   supportedLanguages: [
     {
       type: ObjectId,
-      ref: 'SuportedLanguage',
+      ref: 'SupportedLanguage',
     },
   ],
   emailjs: {

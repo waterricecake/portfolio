@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
-
 const StatusSchema = new Schema({
   visible: {
     type: Boolean,
@@ -14,7 +13,7 @@ const StatusSchema = new Schema({
   locales: {
     type: Map,
     of: new Schema({
-      messege: {
+      message: {
         type: String,
         required: true,
       },

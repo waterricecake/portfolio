@@ -1,17 +1,16 @@
 import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 import dotenv from 'dotenv';
 
 dotenv.config();
+let mongoServer;
 
-const connect = () => {
-  if (process.env.NODE_ENV !== 'production') {
-    mongoose.set('debug', true);
-  }
-
-  const path = getPath();
-  console.log(path);
+const connect = async () => {
+  const node_env = process.env.NODE_ENV;
+  const path = await getUri(node_env);
+  console.log(`Try connect to ${node_env} : ${path}`);
   mongoose
-    .connect(getPath(), {
+    .connect(path, {
       dbName: `${process.env.MONGO_DB}`,
     })
     .then((connection) => {
@@ -22,7 +21,36 @@ const connect = () => {
     });
 };
 
-const getPath = () => {
+const close = async () => {
+  if (mongoServer) {
+    await mongoServer.stop();
+  }
+  await mongoose.connection.close();
+};
+
+const getUri = async (env) => {
+  if (env === 'production') {
+    return getProductUri();
+  }
+  return getInmemoryUri();
+};
+
+const getInmemoryUri = async () => {
+  mongoServer = await MongoMemoryServer.create();
+  const uri = mongoServer.getUri();
+  const connection = await mongoose.createConnection(uri).asPromise();
+
+  const adminDb = connection.db;
+  await adminDb.command({
+    createUser: 'rootuser',
+    pwd: 'rootpass',
+    roles: [{ role: 'readWrite', db: 'portfolio' }],
+  });
+  connection.close();
+  return mongoServer.getUri();
+};
+
+const getProductUri = async () => {
   const id = process.env.MONGO_USER_ID;
   const password = process.env.MONGO_PASS;
   const host = process.env.MONGO_HOST;
@@ -46,4 +74,4 @@ const getStatusLog = (status) => {
   return 'Not Connected';
 };
 
-export default connect;
+export { connect, close };
