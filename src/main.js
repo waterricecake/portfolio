@@ -3,11 +3,12 @@ import cors from 'cors';
 import settingRouter from './settings/route/SettingsRouter.js';
 import structureRouter from './structures/route/StructureRouter.js';
 import stringRouter from './strings/route/StringRouter.js';
+import connect from './common/repository/MongoRepository.js';
 
 const app = express();
-app.set('port', process.env.PORT || 3000);
-
+app.set('port', process.env.SERVER_PORT || 3000);
 app.use(cors());
+connect();
 
 app.use('/settings', settingRouter);
 app.use('/structures', structureRouter);
