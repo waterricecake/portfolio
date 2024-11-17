@@ -11,8 +11,8 @@ const getMockData = async (filename) => {
   return JSON.parse(data);
 };
 
-router.get('/:userId', async (req, res) => {
-  const mock = await structureService.getStructure(req.params.userId);
+router.get('/article/:articleId', async (req, res) => {
+  const mock = await structureService.get(req.params.articleId);
   res.json(mock);
 });
 

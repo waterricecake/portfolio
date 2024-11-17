@@ -8,6 +8,7 @@ const getMockData = async (filename) => {
 };
 
 const getStructure = async (userId) => {
+  console.log(userId);
   const structure = await getMockData('StructureMock.json');
   return structure;
 };
