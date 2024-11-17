@@ -1,10 +1,10 @@
 import express from 'express';
-import structureService from '../application/StructureService.js';
+import { getArticle } from '../application/ArticlesService.js';
 
 const router = express.Router();
 
-router.get('/article/:articleId', async (req, res) => {
-  const mock = await structureService.get(req.params.articleId);
+router.get('/:articleId', async (req, res) => {
+  const mock = await getArticle(req.params.articleId);
   res.json(mock);
 });
 
