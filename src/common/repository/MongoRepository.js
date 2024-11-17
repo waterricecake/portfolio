@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import dotenv from 'dotenv';
+import initDatas from './InitDatas.js';
 
 dotenv.config();
 let mongoServer;
@@ -13,8 +14,10 @@ const connect = async () => {
     .connect(path, {
       dbName: `${process.env.MONGO_DB}`,
     })
-    .then((connection) => {
+    .then(async (connection) => {
       console.log(getConnectedMessage(connection.connections[0]));
+      mongoose.connection.dropDatabase();
+      await initDatas();
     })
     .catch((err) => {
       console.error('Connection failed\n', err);

@@ -22,7 +22,7 @@
     "test": "jest",
     "start": "NODE_ENV=production nodemon main"
   },
-  "imports":{
+  "imports": {
     "#root": "./*"
   },
   "keywords": [],
