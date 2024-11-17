@@ -1,5 +1,4 @@
 import Settings from './../domains/SettingSchema.js';
-import mongoose from 'mongoose';
 
 const getSetting = async (userId) => {
   const setting = await Settings.findOne({ userId: userId }).populate([
