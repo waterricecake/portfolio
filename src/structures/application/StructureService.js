@@ -9,21 +9,6 @@ const getMockData = async (filename) => {
 
 const getStructure = async (userId) => {
   const structure = await getMockData('StructureMock.json');
-  const categories = structure['categories'];
-  const sections = structure['sections'];
-  for (const section of sections) {
-    const category = categories.find(
-      (category) => category.id === section['categoryId'],
-    );
-    if (!category) {
-      throw new Error(
-        `[DataProvider] The section with id "${section.id}" has an invalid categoryId "${section['categoryId']}". There's no such category.`,
-      );
-    }
-
-    section.category = category;
-    section.content = await getMockData(`${section.id}.json`);
-  }
   return structure;
 };
 
