@@ -19,7 +19,7 @@ const ArticleSchema = new Schema({
     of: String,
   },
   locales: {
-    type: Map,
+    type: ObjectId,
     ref: 'Locale',
   },
   items: {

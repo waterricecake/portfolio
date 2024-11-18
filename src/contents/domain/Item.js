@@ -13,7 +13,7 @@ const ItemSchema = new Schema({
     },
     fa: {
       type: String,
-      required: true,
+      default: null,
     },
     faColors: {
       bg: {
@@ -48,7 +48,6 @@ const ItemSchema = new Schema({
   },
   value: {
     type: String,
-    default: null,
   },
   component: {
     type: String,
