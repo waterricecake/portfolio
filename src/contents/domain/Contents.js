@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import { localesPopulate } from './Locale.js';
+import { articlePopulate } from './Article.js';
 
 const {
   Schema,
@@ -17,5 +19,15 @@ const ContentsSchema = new Schema({
   },
 });
 
-const ContentsRepository = mongoose.model('Contens', ContentsSchema);
-export default ContentsRepository;
+const ContentsRepository = mongoose.model('Contents', ContentsSchema);
+const contentsPopulate = [
+  {
+    path: 'locales',
+    populate: localesPopulate,
+  },
+  {
+    path: 'articles',
+    populate: articlePopulate,
+  },
+];
+export { ContentsRepository, contentsPopulate };

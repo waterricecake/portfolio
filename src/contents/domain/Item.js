@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { localesPopulate } from './Locale.js';
 
 const {
   Schema,
@@ -58,7 +59,7 @@ const ItemSchema = new Schema({
     ref: 'Locale',
   },
   media: {
-    youtueVideo: {
+    youtubeVideo: {
       type: String,
     },
     screenshots: {
@@ -78,4 +79,12 @@ const ItemSchema = new Schema({
 });
 
 const ItemRepository = mongoose.model('Item', ItemSchema);
-export default ItemRepository;
+
+const itemPopulate = [
+  {
+    path: 'locales',
+    populate: localesPopulate,
+  },
+];
+
+export { ItemRepository, itemPopulate };

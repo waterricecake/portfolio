@@ -1,9 +1,10 @@
-import ContentsRepository from '../domain/Contents.js';
+import { contentsPopulate, ContentsRepository } from '../domain/Contents.js';
 
-const getArticle = async (id) => {
-  console.log(id);
-  const structure = await ContentsRepository.find({ id: id });
-  return structure;
+const getContents = async (id) => {
+  const contents = await ContentsRepository.findById(id).populate(
+    contentsPopulate,
+  );
+  return contents;
 };
 
-export { getArticle };
+export { getContents };

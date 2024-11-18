@@ -1,4 +1,4 @@
-import ContentsRepository from '../domain/Contents.js';
+import { ContentsRepository } from '../domain/Contents.js';
 import initAbout from './InitAbout.js';
 import initAchievements from './InitAchievements.js';
 import initContact from './InitContact.js';

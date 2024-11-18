@@ -13,7 +13,7 @@ connect();
 
 app.use('/settings', settingRouter);
 app.use('/structures', structureRouter);
-app.use('/articles', contentsRouter);
+app.use('/contents', contentsRouter);
 
 const server = app.listen(app.get('port'), () => {
   console.log(`Listening ${app.get('port')}`);

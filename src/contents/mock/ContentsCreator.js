@@ -1,12 +1,11 @@
-import ArticleRepository from '../domain/Article.js';
-import ContentsRepository from '../domain/Contents.js';
-import ItemRepository from '../domain/Item.js';
-import LocaleRepository from '../domain/Locale.js';
+import { ArticleRepository } from '../domain/Article.js';
+import { ContentsRepository } from '../domain/Contents.js';
+import { ItemRepository } from '../domain/Item.js';
+import { LocaleRepository } from '../domain/Locale.js';
 
 const createContentsFrom = async (json) => {
   await createLocalesFrom(json);
   await createArticlesFrom(json);
-
   return await ContentsRepository.create(json);
 };
 
@@ -14,7 +13,7 @@ const createLocalesFrom = async (json) => {
   if (!json.locales) {
     return;
   }
-  const locales = await LocaleRepository.create(parseToMap(json.locales));
+  const locales = await LocaleRepository.create(json.locales);
   json.locales = locales._id;
 };
 
@@ -68,19 +67,12 @@ const createOneItemFrom = async (json) => {
 };
 
 const parseToMap = (json) => {
-  const map = new Map();
-  for (const [key, val] of Object.entries(json)) {
-    map.set(key, parseInner(val));
-  }
-  return map;
-};
-
-const parseInner = (json) => {
-  const map = new Map();
-  for (const [key, val] of Object.entries(json)) {
-    map.set(key, val);
-  }
-  return map;
+  return new Map(
+    Object.entries(json).map(([key, value]) => [
+      key,
+      new Map(Object.entries(value)),
+    ]),
+  );
 };
 
 export default createContentsFrom;

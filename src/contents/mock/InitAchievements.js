@@ -1,4 +1,4 @@
-import createContentsFrom from './ParseJsonToEntity.js';
+import createContentsFrom from './ContentsCreator.js';
 
 const initAchievements = async () => {
   return await createContentsFrom({

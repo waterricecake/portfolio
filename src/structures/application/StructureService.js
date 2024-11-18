@@ -1,15 +1,9 @@
-import fs from 'fs/promises';
-
-const getMockData = async (filename) => {
-  const data = await fs.readFile(
-    new URL(`./../mock/${filename}`, import.meta.url),
-  );
-  return JSON.parse(data);
-};
+import { StructureRepository, structurePopulate } from '../domain/Structure.js';
 
 const getStructure = async (userId) => {
-  console.log(userId);
-  const structure = await getMockData('StructureMock.json');
+  const structure = await StructureRepository.findOne({
+    userId: userId,
+  }).populate(structurePopulate);
   return structure;
 };
 

@@ -5,13 +5,9 @@ const {
   Types: { ObjectId },
 } = mongoose;
 
-const LocaleSchema = new Schema({
-  type: Map,
-  of: {
-    type: Map,
-    of: String,
-  },
-});
+const LocaleSchema = new Schema({}, { strict: false });
 
 const LocaleRepository = mongoose.model('Locale', LocaleSchema);
-export default LocaleRepository;
+
+const localesPopulate = [];
+export { LocaleRepository, localesPopulate };
