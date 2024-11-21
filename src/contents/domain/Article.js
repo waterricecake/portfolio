@@ -28,19 +28,18 @@ const ArticleSchema = new Schema({
     type: Array,
     ref: 'Item',
   },
-  categories: {
-    type: Array,
-    of: {
+  categories: [
+    {
       id: {
         type: String,
         required: true,
       },
       locales: {
         type: ObjectId,
-        of: 'Locale',
+        ref: 'Locale',
       },
     },
-  },
+  ],
 });
 
 const ArticleRepository = mongoose.model('Article', ArticleSchema);

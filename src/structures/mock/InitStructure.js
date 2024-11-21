@@ -1,6 +1,13 @@
+import { StructureRepository } from '../domain/Structure.js';
 import createStructureFrom from './StructureCreator.js';
 
 const initStructure = async (contents) => {
+  const hasData = await StructureRepository.countDocuments();
+  if (hasData) {
+    console.log('Structures data already init');
+    return;
+  }
+  console.log('Init structure data');
   const json = structureMockJson;
   for (const section of json.sections) {
     section.contentId = contents[section.id]._id;

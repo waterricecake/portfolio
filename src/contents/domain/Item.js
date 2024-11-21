@@ -7,6 +7,10 @@ const {
 } = mongoose;
 
 const ItemSchema = new Schema({
+  categoryId: {
+    type: String,
+    required: false,
+  },
   icon: {
     img: {
       type: String,
